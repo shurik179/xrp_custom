@@ -4,22 +4,24 @@ import xrpdisplay
 
 # LED colors. These can't be used for display colors - those use different format!!
 # As usual, each color ranges 0-255, but we suggest using values of 64 or lower - 
-# even that is quite bright
-RED = (64,0,0)
-GREEN = (0,24,0)
-BLUE = (0,0,32)
+# even that is quite bright.
+# Blue is dimmer than red and green, so we use higher values 
+RED = (32,0,0)
+GREEN = (0,32,0)
+BLUE = (0,0,64)
 
 
 d = xrpdisplay.XrpDisplay();
 # Setting LED colors. First argument is color of left LED, second, of right.
 # Second argument is optional; if omitted, same color is used for both LEDs:
 # d.set_leds(RED)
-d.set_leds(GREEN, BLUE)
+d.set_leds(RED, BLUE)
 d.write_line(5,'        Press any button \n               to continue')
 # buttons. There are 2 buttons, labeled A and B. This command waits
 # until a button is pressed, returns button index: 1 for A, 2 for B
 x = d.wait_for_button()
-
+# you can also check if a button is currently pressed:
+# if d.is_button_pressed(d.buttonA): 
 # basic display usage
 d.clear()
 d.write_line(2, f'Pressed button {x}')

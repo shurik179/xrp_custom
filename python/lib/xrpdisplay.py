@@ -20,9 +20,6 @@ import neopixel
 # For SPI display
 import st7789_purefb as st7789
 from ezFBfont import ezFBfont
-#import ezFBfont_23_spleen_12x24_ascii as promptfont
-#import ezFBfont_timB18_ascii_23 as promptfont
-#import ezFBfont_ncenB18_ascii_25 as promptfont
 import PTSans_NarrowBold_32 
 import ezFBfont_helvB14_ascii_18 
 import PTSans_Narrow_24 
