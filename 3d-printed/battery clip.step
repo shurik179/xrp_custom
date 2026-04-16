@@ -10,11 +10,11 @@ FILE_DESCRIPTION(
 
 FILE_NAME(
 /* name */ 'battery clip.step',
-/* time_stamp */ '2025-05-04T21:22:57-04:00',
+/* time_stamp */ '2026-04-16T07:56:25-04:00',
 /* author */ (''),
 /* organization */ (''),
 /* preprocessor_version */ 'ST-DEVELOPER v20.1',
-/* originating_system */ 'Autodesk Translation Framework v14.4.0.0',
+/* originating_system */ 'Autodesk Translation Framework v14.24.0.0',
 /* authorisation */ '');
 
 FILE_SCHEMA (('AUTOMOTIVE_DESIGN { 1 0 10303 214 3 1 1 }'));

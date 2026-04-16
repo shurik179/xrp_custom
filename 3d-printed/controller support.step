@@ -10,11 +10,11 @@ FILE_DESCRIPTION(
 
 FILE_NAME(
 /* name */ 'controller support.step',
-/* time_stamp */ '2025-05-13T18:01:24-04:00',
+/* time_stamp */ '2026-04-16T07:55:37-04:00',
 /* author */ (''),
 /* organization */ (''),
 /* preprocessor_version */ 'ST-DEVELOPER v20.1',
-/* originating_system */ 'Autodesk Translation Framework v14.4.0.0',
+/* originating_system */ 'Autodesk Translation Framework v14.24.0.0',
 /* authorisation */ '');
 
 FILE_SCHEMA (('AUTOMOTIVE_DESIGN { 1 0 10303 214 3 1 1 }'));
@@ -1131,17 +1131,17 @@ SOLID_ANGLE_UNIT()
 #1077=PRODUCT_DEFINITION_SHAPE('',$,#1080);
 #1078=SHAPE_REPRESENTATION('',(#652),#1070);
 #1079=PRODUCT_DEFINITION_CONTEXT('part definition',#1084,'design');
-#1080=PRODUCT_DEFINITION('controller support','controller support v8',#1081,
+#1080=PRODUCT_DEFINITION('controller support','controller support v9',#1081,
 #1079);
 #1081=PRODUCT_DEFINITION_FORMATION('',$,#1086);
-#1082=PRODUCT_RELATED_PRODUCT_CATEGORY('controller support v8',
-'controller support v8',(#1086));
+#1082=PRODUCT_RELATED_PRODUCT_CATEGORY('controller support v9',
+'controller support v9',(#1086));
 #1083=APPLICATION_PROTOCOL_DEFINITION('international standard',
 'automotive_design',2009,#1084);
 #1084=APPLICATION_CONTEXT(
 'Core Data for Automotive Mechanical Design Process');
 #1085=PRODUCT_CONTEXT('part definition',#1084,'mechanical');
-#1086=PRODUCT('controller support','controller support v8',$,(#1085));
+#1086=PRODUCT('controller support','controller support v9',$,(#1085));
 #1087=PRESENTATION_STYLE_ASSIGNMENT((#1088));
 #1088=SURFACE_STYLE_USAGE(.BOTH.,#1089);
 #1089=SURFACE_SIDE_STYLE('',(#1090));
