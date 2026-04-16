@@ -12,13 +12,15 @@ Needed parts
 * `DIY XRP kit <https://www.sparkfun.com/experiential-robotics-platform-xrp-diy-kit.html>`__ 
   from Sparkfun. Make sure that you buy this kit and not the beta version! 
 * Battery and related parts. You have two choices: 
+
   * Option A:  using two 18650 LiIon batteries. In this case, you will need two such batteries 
     (buy from a brand name vendor!) and battery holder with barrel connector.  
     We recommend this one: https://www.aliexpress.us/item/2255801007364672.html
+
   * Option B: a 2s (7.4V) Li-Ion or LiPo battery pack. The pack should be no larger 
     than 70x40x19mm. I recommend using a pack which contains 2 18650 batteries wrapped 
-    together,  e.g. `this one <>`__ from Amazon, instead of a LiPo battery pack
-    (which contains soft pouches). 
+    together,  e.g. `this one <https://www.amazon.com/dp/B07DNCK7V2>`__ from Amazon, 
+    instead of a LiPo battery pack (which contains soft pouches). 
     You  will also need a separate barrel connector; you can cut it off the battery holder 
     included with the kit, or you can buy one separately  
     Note that if you go with this option, you will need to resolder the connector (see next section)
