@@ -21,10 +21,10 @@ import re
 
 is_release_build = os.environ.get('READTHEDOCS') == 'True'
 
-project = 'Yozh Robot'
+project = 'Customized XRP robot'
 author = 'Alexander Kirillov'
 
-copyright_year = 2021
+copyright_year = 2026
 
 copyright = str(copyright_year) + ", " + str(author)
 
@@ -130,6 +130,6 @@ html_theme_options = {
 imgmath_image_format = 'svg'
 
 rst_epilog = """
-.. |github| replace:: `github repository <https://github.com/shurik179/yozh>`__
+.. |github| replace:: `github repository <https://github.com/shurik179/xrp_custom>`__
 .. |library| replace:: `Library Reference`
 """
