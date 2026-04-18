@@ -13,7 +13,6 @@ Once the robot is assembled, follow the steps below to get started quickly.
 
     quickstart/at_glance
     quickstart/installation
-    quickstart/thonny
     quickstart/hello_world
     quickstart/serial
     quickstart/examples

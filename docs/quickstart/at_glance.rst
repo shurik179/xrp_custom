@@ -1,7 +1,7 @@
-Yozh at a glance
+XRP at a glance
 ================
 
-The photos below show main features of Yozh:
+The photos below show main features of XRP:
 
 .. figure:: ../images/overview-front.png
     :alt: Front view

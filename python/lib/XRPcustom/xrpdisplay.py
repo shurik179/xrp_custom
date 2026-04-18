@@ -18,11 +18,12 @@ import time
 import sys
 import neopixel
 # For SPI display
-import st7789_purefb as st7789
-from ezFBfont import ezFBfont
-import PTSans_NarrowBold_32 
-import ezFBfont_helvB14_ascii_18 
-import PTSans_Narrow_24 
+from .ezFBfont import ezFBfont
+from .st7789_purefb import ST7789_SPI
+
+from . import PTSans_NarrowBold_32 
+from . import ezFBfont_helvB14_ascii_18 
+from . import PTSans_Narrow_24 
 
 disp_sck    = 18 # default SCK of SPI(0)
 disp_mosi   = 19 # default MOSI of SPI(0)
@@ -39,7 +40,7 @@ class XrpDisplay:
     def __init__(self):
         self.npxl = neopixel.NeoPixel(Pin(neopixel_pin, Pin.OUT), 3)
         #self.brightness = 64
-        self.display = st7789.ST7789_SPI(
+        self.display = ST7789_SPI(
             SPI(0,  baudrate=80_000_000,sck=Pin(disp_sck), mosi=Pin(disp_mosi), miso=None),
             width = 135,
             height = 240,
