@@ -2,7 +2,7 @@
 ***************************
 Python Primer
 ***************************
-These commands are not directly related to Yozh, but can serve as useful cheat
+These commands are not directly related to XRP, but can serve as useful cheat
 sheet for people new to MicroPython.
 
 For more information about MicroPython on RP2040 microcontrollers, see

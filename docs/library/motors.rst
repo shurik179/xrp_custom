@@ -9,7 +9,7 @@ XRP has two drive motors, each equipped with an encoder (rotation counter). This
 Detailed information about driving the robot can be found in official 
 XRP documentation (`User guide  <https://xrpusersguide.readthedocs.io/en/latest/course/driving.html>`__,
 `API reference <https://open-stem.github.io/XRP_MicroPython/api.html#XRPLib.differential_drive.DifferentialDrive>`__);  
- here we will give a brief overview of the most commonly used commands.  
+here we will give a brief overview of the most commonly used commands.  
 
 All of the commands below are methods of the `drivetrain` object, so they should be called as `drivetrain.straight(...)`, `drivetrain.turn(...)`, etc.
 
