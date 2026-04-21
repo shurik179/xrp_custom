@@ -1,91 +1,121 @@
 Reflectance sensor array
 ========================
-Yozh has a built-in array of reflectance sensors, pointed down. These sensors
+Our version of XRP uses a custom reflectance sensor array, containing 6 reflectance sensors 
+(as opposed to 2 sensors in the stock version). This sensor is fully documented in a separate 
+github repository, `Reflectance Sensor Array <hhttps://github.com/shurik179/reflectance_array>`_.
+
+This sensor  has a built-in array of reflectance sensors, pointed down. These sensors
 can be used for detecting field borders, for following the line, and other similar
 tasks.
 
-Basic usage
------------
-.. function:: linearray_on()
+All methods described below are methods of the `linearray`  object, so they should be called as `linearray.start()`, etc. 
+Sensor index ``s`` ranges between 0--5; 0 is the rightmost sensor, and 5, the leftmost.
 
-.. function:: linearray_off()
+Basic commands
+---------------
 
-   Turns reflectance array on/off. By default, it is off (to save power).
+.. function:: start()
+.. function:: stop() 
+
+    Starting and stopping the sensor. By default, the sensor is active. To save battery, 
+    you can stop it by using `stop()`; this turns off the power to IR LEDs inside reflectance 
+    sensors.  Note that you can still read the reflectance sensor values even when the LEDs are off; 
+    this can be useful for detecting ambient light changes.
 
 
-.. function:: linearray_raw(i)
+.. function:: is_connected()
 
-   Returns raw reading of sensor ``i``. One can use either indices 0...7 or
-   (preferred) named values ``bot.A1 = 0`` ... ``bot.A8 = 7``. A1 is the
-   rightmost sensor, and A8, leftmost.
+   Returns ``True`` if the reflectance sensor array is connected and ``False`` otherwise.
+   It is a good practice to check that the sensor is connected before using it.     
 
-   Readings range 0-1023 depending on amount of reflected light: the more light
-   reflected, the **lower** the value. Typical reading on white paper is about 50-80, and on
-   black painted plywood,  950. Note that black surfaces can be unexpectedly
-   reflective; on some materials which look black to human eye, the reading
-   can be as low as 600.
+.. function:: fw_version()
+
+    Returns firmware version as a string, e.g. `1.3`
+
+.. function:: raw(s)
+
+   Returns raw reading of  s-th reflection sensor (0-1023). The darker the surface, 
+   the lower the value. Typical value on a white sheet of paper is around 950, 
+   and on black plastic, around 120. 
+
 
 Calibration
------------
+===========
+You can calibrate the sensor, recording  values for black and white; these values 
+will be used for computing calibrated readings and for deciding when the sensor 
+is on black/white (see below). 
 
-Process of calibration refers to learning the values corresponding to black
-and white areas of the field and then using these values to rescale the raw
-readings.
+ The calibration values are saved in persistent memory of the sensor, 
+ which means that they are preserved  even when you turn off the  power to the sensor; 
+ they  will be loaded on next power-up. 
 
-.. function:: calibrate()
 
-   Calibrates the sensors, recording the lowest and highest values. This
-   command should be called when some of the sensors are on the white area
-   and some, on black.
 
-.. function:: linearray_cal(i)
+.. function:: start_cal()
+.. function:: end_cal()
 
-   Returns reading of sensor ``i``, rescaled to 0-100:  white corresponds to 0
-   and black to 100. It uses the calibration data, so should only be used after
-   the sensor array  has been calibrated.
+   Starts and stops calibration. In between these commands, it is expected that 
+   you move the robot (without lifting it!) so that each sensor sees both white and black. The lowest 
+   recorded value will be saved as black calibration, and the highest, as white 
+   calibration; these are saved individaully per sensor.
 
-.. function:: sensor_on_white(i)
+.. function:: get_cal_black(s)
+.. function:: get_cal_white(s)
 
-   Returns ``True`` if sensor ``i`` is on white and false otherwise. A sensor
-   is considered to be on white if calibrated value is below 50.
+   Returns the value of black (respectively, white) calibration for sensor s. 
+   This is rarely needed - mostly to verify that calibration was successful 
+   in cases when your sensor behaves unexpectedly. 
+   
 
-.. function:: sensor_on_black(i)
+Calibrated readings
+===================
+.. function:: calibrated(s)
 
-   Returns ``True`` if sensor ``i`` is on black and false otherwise.
+   This function assumes that you had already calibrated your sensor. It returns 
+   calibrated value. For example, if calibration values were 300 (black) and 800 (white)
+   then raw reading of 300 or less  will give calibrated reading 0, raw reading of 800 
+   or above will give calibrated reading of 1023, and all values in between will be 
+   rescaled linearly - e.g., raw reading of 550 (which is exactly the midpoint between 300 and 800)
+   will give calibrated reading of 512. 
 
-.. function:: all_on_black()
+Digital readings
+================  
+In many cases you only need to know if the sensor is on black/white and not interested in exact reading. 
+In these cases, it is much faster to use the functions below. As before, you should calibrate 
+your sensor before using these functiosn. 
 
-.. function:: all_on_white()
+.. function:: on_black(s)
+.. function:: on_white(s)
 
-   Returns ``True`` if all 8 sensors are on black (resepctively, on white) and
-   ``False`` otherwise.
+   Returns True if sensor s is on black (respectively, white) and False otherwise. 
+   The cutoff between white and black is defined to be the  midpoint between black 
+   and white calibration values. 
 
-Line following
---------------
+.. function:: all_black()
+.. function:: all_white()
 
-A common task for such robots is following the line. To help with that,
-Yozh library provides the helper function.
+   Returns True if all sensors are on black (respectively, white) and False otherwise. 
 
-.. function:: line_position_white()
 
-    Returns a number showing position of the line under the robot, assuming
-    white line on black background.   The number
-    ranges between -5 (line far to the left of the robot) to 5 (line far to
-    the right of the robot). 0 is central position: line is exactly under the
-    center of the robot.
+Line position 
+=============
 
-    Slightly simplifying, this command works by counting how many sensors are
-    to the left of the line, how many are to the right, and then taking the
-    difference. It works best for lines of width 1-2cm; in particular, electric
-    tape or gaffers tape  (1/2" or 3/4") works well.
+For line following tasks, you can use the functions below. They work best with line widths of 1/2-3/4" 
+(12-20mm). 
 
-    This command only uses the central 6 sensors; rightmost and leftmost sensor
-    (A1 and A8) are not used.
+.. function:: set_linemode(mode)
 
-    If there is no line under these sensors, the function returns `None` value.
-    Thus, before using the retunred value in any computations, check that it is not `None`.
-    
+   Sets the mode for line position function. There are two possible modes: 
+   
+   LINEMODE_WHITEONBLACK - for tracking white line on black background 
+   
+   LINEMODE_BLACKONWHITE - for black line on white background
 
-.. function:: line_position_black()
+.. function:: line_pos()
 
-    Same as above, but assuming black line on white background.
+   Returns the position of the line under the robot. The return  value ranges 0-100; 
+   0 means that the line is all the way to the right and 100, all the way to the left. 
+   If no sensor sees the line, the function will still return a value, which is unpredictable. 
+
+
+

@@ -43,6 +43,7 @@ similar to what is shown below.
 
 Make sure to enable "Files" pane of Thonny; it should show the file system of both your computer and the robot. 
 If it is not shown, enable it in "View" menu.
+
 .. figure:: ../images/quickstart-thonny2.png
     :alt: Thonny
     :width: 40%
@@ -52,6 +53,7 @@ Custom library installation
 ----------------------------
 1. Go to |github|, click green  "Code" button and select "Download ZIP" to download the repository to your computer. 
    Unzip the downloaded file.
+   
   .. figure:: ../images/quickstart-github.png
       :alt: GitHub repository
       :width: 80%
