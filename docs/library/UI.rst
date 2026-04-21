@@ -72,7 +72,7 @@ The easiest way to interact with OLED display is by using the commands below.
    from the triple of values used for Neopixel colors -- these are not interchangeable. The library contains several predefined colors: 
    BLACK, DARKGREY, NAVY, BLUE, GREEN, TEAL, AZURE, LIME, CYAN, MAROON, PURPLE, OLIVE, GREY, SILVER, RED, ROSE, MAGENTA, ORANGE,
    YELLOW, WHITE
-   (all are properties of display object, e.g. `d.BLACK`).
+   (all are properties of display object, e.g. `display.BLACK`).
 
 
 .. figure:: images/six_lines.jpg
