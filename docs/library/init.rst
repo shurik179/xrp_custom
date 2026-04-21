@@ -6,38 +6,17 @@ your `main.py` file:
 
 .. code-block:: python
 
-   from yozh import Yozh
-   bot = Yozh()
+   import time
+   from XRPcustom.linearray import *
 
 
-This creates  an  object with name ``bot``, representing your robot.  From now
-on, all commands you give to the robot will be functions and properties of ``bot``
-object. We will not include the name bot in our references below; for example,
-to use a command :func:`stop_motors()` described below, you would need to write
-:func:`bot.stop_motors()`.
 
-By default, creating bot object also initializes the OLED display; it will
-produce errors if the OLED display is not found. If for some
-reason you are not using OLED, you can initialize the robot using this form of
-initialization command:
-
-.. code-block:: python
-
-   from yozh import Yozh
-   bot = Yozh(oled = None)
+This creates several objects that you will be using to control the robot:
+*  `display` - object representing the OLED display with LEDs and buttons
+*  `drivetrain` - object representing the drivetrain (drive motors and encoders)
+*  `linearray`` - object representing the reflectance line array sensor, used for detecting the line on the floor
+*  `rangefinder` - object representing the distance sensor, used for detecting obstacles in front of the robot
+*  `imu` - object representing the inertial measurement unit, used for detecting the robot's orientation and acceleration
+*  `servo_one` and `servo_two` - objects representing the two servo motors (if you have them connected)
 
 
-Here are some basic functions:
-
-.. function:: begin()
-
-   Shows basic info (firmware version, battery voltage) on OLED screen
-
-.. function:: fw_version()
-
-   Returns firmware version as a string. e.g. `2.1`.
-
-.. function:: battery()
-
-   Returns battery voltage, in volts. For normal operation it should be at
-   least 4.5 V.

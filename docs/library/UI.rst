@@ -1,96 +1,99 @@
 Display, buttons, LEDs
 ======================
 
-Yozh contains a buzzer,  two NeoPixel  LEDs in the back and an 128x64 OLED screen and
-two buttons on the top plate, for interaction with the user. To control them,
-use the functions below.
+XRP display contains two NeoPixel  LEDs in the front, an 135x240 OLED screen and
+two buttons for interaction with the user. To control them,
+use the functions below. All functions below are methods of the `display` object, 
+so they should be called as `display.set_leds(...)`, `display.set_text(...)`, etc.
 
 LEDs
 -----
-.. function:: set_led_L(color)
+.. function:: set_leds(color_l, color_r)
 
-.. function:: set_led_R(color)
-
-   These commands set the left (respectively, right) LED to given color. Color
-   must be a list of 3 numbers, showing the values of Red, Green, and Blue
-   colors, each ranging between 0--255, e.g. ``bot.set_led_L([255,0,0])`` to set
-   the left LED red.  You can also define named colors for easier use, e.g.
+   Set colors of both LEDs at the same time; first argument is the color for the left LED, 
+   second argument is the color for the right LED. Parameter ``color_r`` is optional; if omitted, both LEDs will
+   be set to the same color. Each color
+   must be a triple  of numbers, showing the values of Red, Green, and Blue
+   colors, each ranging between 0--255, e.g. ``display.set_leds((255,0,0))`` to set
+   the LEDs red.  You can also define named colors for easier use, e.g.
 
 .. code-block:: python
 
-    BLUE=[0,0,255]
-
-    bot.set_led_L(BLUE)
-
-.. function:: set_leds(color_l, color_r)
-
-   Set colors of both LEDs at the same time. As before, each color is a list of
-   three values. Parameter ``color_r`` is optional; if omitted, both LEDs will
-   be set to the same color.
-
-.. function:: set_led_brightness(value)
-
-   Set the maximal brightness of both LEDs to a given value (ranging 0-255).
-   Default value is 64 (i.e., 1/4 of maximal brightness), and it is more than
-   adequate for most purposes, so there is rarely a need to change it. Setting
-   brightness to 255 would produce light bright enough to hurt your eyes (and
-   drain the batteries rather quickly)
+    BLUE=(0,0,255)
+    display.set_leds(BLUE)
 
 
-Buzzer
-------
+  Note that the LEDs are quite bright, so it is recommended to use relatively low values for 
+  the colors, e.g. 64 instead of 255, to avoid hurting your eyes and draining the batteries unnecessarily fast.
 
-.. function:: buzz(freq, dur=0.5)
-
-    Buzz at given frequency (in hertz) for given duration (in seconds).
-    Second parameter is optional; if omitted, duration of 0.5 seconds is used.
 
 Buttons
 -------
 
-.. function:: wait_for(button)
+.. function:: wait_for_button()
 
-   Waits until the user presses the given button. There are two possible
-   pre-defined buttons: ``bot.button_A`` and ``bot.button_B``
+   Waits until the user presses a button; returns the value indicating which button was pressed. 
+   There are two possible values: ``display.buttonA`` and ``display.buttonB`` (in fact, these values 
+   are just 1 and 2, but it is better to use the named constants for better readability of the code).
 
-.. function:: is_pressed(button)
+.. function:: is_button_pressed(button)
 
    Returns ``True`` if given button is currently pressed and ``False`` otherwise.
 
-.. function:: choose_button()
 
-    Waits until the user presses one of the two buttons. This function returns
-    string literal ``A`` or ``B`` depending on the pressed  button:
-
-.. code-block:: python
-
-    bot.set_text("Press any button", 0)
-    #wait until user presses one of buttons
-    if (bot.choose_button()=="A"):
-        # do something
-    else:
-        # button B was pressed
-        # do something else
-
-
-OLED
-----
+OLED display: basic operations
+-------------------------------
 
 The easiest way to interact with OLED display is by using the commands below.
 
-.. function:: clear_display()
+.. function:: clear()
 
-   Clears all text and graphics from display
+   Clears display, filling it with black pixels. 
 
-.. function:: set_text(text, line_number)
+.. function:: write_line(i, text, font = None, fg = None)
 
-   Prints a line of text on OLED display, on line number `line_number`, erasing
-   all previous contents of that line. Note
-   that line numbers start with 0, not 1!
-   If the text to print includes line break character `\n`, the line is broken
-   and continues on next line, e.g.
+   Writes text on i-th line of display (i ranges 1--6). The text can be split into several lines using `\\n` escape sequence. 
+   For example, `write_line(2, 'press button \\n to continue')` will write `press button` on line 2 and `to continue` on line 3. 
+   This function automatically cleares these lines before writing new text. 
+
+   Arguments `font` and `fg` (foreground color) are optional; if omitted, it will use default font (`display.smallfont`, 
+   which is Helvetica bold) and white color. Other possible fonts are `display.smallfont2` (PT Sans Narrow_24), similar in size to the default 
+   font but slightly more narrow, and `display.largefont` (PT Sans Narrow_32), a larger font. Note that `display.largefont` is taller than line 
+   height, so using e.g. `display.write_line(2, "some text", font = display.largefont)` will actually get into the space reserved for line 3 as well as 2. 
+   You might need to manually clear line 3 (by using `display.write_line(3,'')`) if it was non-empty. 
+
+   Argument `fg` should be a color in RGB565 encoding; note that this is different 
+   from the triple of values used for Neopixel colors -- these are not interchangeable. The library contains several predefined colors: 
+   BLACK, DARKGREY, NAVY, BLUE, GREEN, TEAL, AZURE, LIME, CYAN, MAROON, PURPLE, OLIVE, GREY, SILVER, RED, ROSE, MAGENTA, ORANGE,
+   YELLOW, WHITE
+   (all are properties of display object, e.g. `d.BLACK`).
+
+
+.. figure:: images/six_lines.jpg
+    :alt: Main view
+    :width: 60%
+
+
+Display: advanced 
+------------------
+
+When the above functions are not enough, you can use all graphics methods of micropython `framebuffer` class with `display` object, for example 
+`display.rect(0,0,40,40, display.RED)`. Full list of supported framebuffer methods can be found at https://docs.micropython.org/en/latest/library/framebuf.html. 
+Note that you will need to call `display.show()` to make the display show graphics constructed in this way (unlike `write_line` command that doesn't 
+require that).
+
+You can also place text in any position on screen, using `write()` method with any of the fonts (`display.smallfont`, `display.smallfont2`, `display.largefont`), 
+e.g. 
+
 
 .. code-block:: python
 
-   bot.set_text("Initialized", 0)
-   bot.set_text("Press A to \n continue", 1)
+   display.largefont.write(20, 30, "Welcome!", fg = display.YELLOW)
+   display.show()
+
+
+Full documentation of `write()` method can be found at 
+https://github.com/easytarget/microPyEZfonts/blob/main/WRITER.md .
+As before, you will need to call `display.show()` to make these texts appear on screen. 
+
+
