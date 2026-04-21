@@ -7,7 +7,7 @@ use the functions below. All functions below are methods of the `display` object
 so they should be called as `display.set_leds(...)`, `display.set_text(...)`, etc.
 
 
-.. figure:: images/display-main.jpg
+.. figure:: ../images/display-main.jpg
     :alt: Main view
     :width: 60%
 
@@ -75,7 +75,7 @@ The easiest way to interact with OLED display is by using the commands below.
    (all are properties of display object, e.g. `display.BLACK`).
 
 
-.. figure:: images/six_lines.jpg
+.. figure:: ../images/six_lines.jpg
     :alt: Main view
     :width: 60%
 

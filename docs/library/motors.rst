@@ -6,11 +6,14 @@ control the motors.
 
 XRP has two drive motors, each equipped with an encoder (rotation counter). This allows us to control the motors in a closed loop, using feedback from the encoders to maintain desired speed or to drive a specific distance.
 
-Detailed information about driving the robot can be found in official `XRP documentation <https://xrpusersguide.readthedocs.io/en/latest/course/driving.html>`__, but here we will give a brief overview of the most commonly used commands.  
+Detailed information about driving the robot can be found in official 
+XRP documentation (`User guide  <https://xrpusersguide.readthedocs.io/en/latest/course/driving.html>`__,
+`API reference <https://open-stem.github.io/XRP_MicroPython/api.html#XRPLib.differential_drive.DifferentialDrive>`__);  
+ here we will give a brief overview of the most commonly used commands.  
 
 All of the commands below are methods of the `drivetrain` object, so they should be called as `drivetrain.straight(...)`, `drivetrain.turn(...)`, etc.
 
-.. function:: stop(distance, speed)
+.. function:: stop()
 
    Stops the robot by setting the power to both motors to 0. 
 
@@ -27,12 +30,12 @@ All of the commands below are methods of the `drivetrain` object, so they should
 
    This command uses encoder readings to determine how far to drive, and tries to keep the robot on straight path by using IMU. 
 
-   This command has a number of optional paramters not documented here, see official documentation for details.
+   This command has a number of optional paramеters not documented here, see `API reference <https://open-stem.github.io/XRP_MicroPython/api.html#XRPLib.differential_drive.DifferentialDrive>`__ for details.
 
 .. function:: turn(angle, effort=0.5)
 
    Turn by given angle, in degrees. Positive values correspond to turning right (clockwise).
-   Parameter ``speed`` is  optional; if not given, default speed of 50 (i.e. half of maximal) is used.
+   Parameter ``effort`` is  optional; if not given, default effort  of 0.5 (i.e. half of maximal) is used.
 
 
 Encoders
