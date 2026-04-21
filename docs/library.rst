@@ -16,7 +16,7 @@ This lists includes :
 * all commands that are part of the custom library (these are the commands related to display and reflectance array) 
 
 * most commonly used commands from the default `XRPLib` library; see 
-`API reference <https://open-stem.github.io/XRP_MicroPython/api.html>`__ for full list. 
+  `API reference <https://open-stem.github.io/XRP_MicroPython/api.html>`__ for full list. 
 
 
 
