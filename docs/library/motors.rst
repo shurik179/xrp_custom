@@ -1,136 +1,52 @@
-Motor control
-=============
+Driving
+=======
 
 Of course, main use of this robot is to drive around, and for this, we need to
 control the motors.
 
-Basic control
--------------
+XRP has two drive motors, each equipped with an encoder (rotation counter). This allows us to control the motors in a closed loop, using feedback from the encoders to maintain desired speed or to drive a specific distance.
 
-.. function:: set_motors(power_L, power_R)
+Detailed information about driving the robot can be found in official `XRP documentation <https://xrpusersguide.readthedocs.io/en/latest/course/driving.html>`__, but here we will give a brief overview of the most commonly used commands.  
 
-   Set power for left and right motors. ``power_L`` is power to left motor,
-   ``power_R`` is power to right motor. Each of them should be  between 100
-   (full speed forward) and -100 (full speed backward).
+All of the commands below are methods of the `drivetrain` object, so they should be called as `drivetrain.straight(...)`, `drivetrain.turn(...)`, etc.
 
-   Note that because no two motors are exactly identical, even if you give
-   both motors same power (e.g. ``set_motors(60,60)``), their speeds might be
-   slightly different, causing the robot to veer to one side instead of moving
-   straight. To fix that, use PID control as described below.
+.. function:: stop(distance, speed)
 
-.. function:: stop_motors()
+   Stops the robot by setting the power to both motors to 0. 
 
-   Stop  both motors.
+.. function:: set_speed(left_speed: float, right_speed: float)
 
-Encoders
---------
+   Sets the speed of the left and right motors; speed is measured in centimeters per second. This function uses encoder feedback to maintain the desired speed.
+  
+ 
+.. function:: straight(distance, effort=0.5)
 
-  Both motors are equipped with encoders (essentially, rotation counters).
-  For 75:1 HP motors, each motor at full speed produces about 4200 encoder ticks
-  per second.
+   Move forward/backward  by given distance (in centimeters) at given effort (i.e. 
+   power level). Effort should be from -1 (reverse at full speed) to 1 (forward at full speed). 
+   It is optional; if not given, the default effort of 0.5 (i.e. half of maximal) is used.
 
-.. function:: reset_encoders()
+   This command uses encoder readings to determine how far to drive, and tries to keep the robot on straight path by using IMU. 
 
-  Resets both encoders
+   This command has a number of optional paramters not documented here, see official documentation for details.
 
-
-.. function:: get_encoders()
-
-   Gets values of both encoders and saves them. These values can be accessed as
-   described below
-
-.. function:: encoder_L
-
-.. function:: encoder_R
-
-   Value of left and right  encoders, in ticks, as fetched at last call of
-   ``get_encoders()``. Note that these values are not automatically updated:
-   you need to call ``get_encoders()`` to update them
-
-
-.. function:: get_speeds()
-
-
-   Gets the  speeds of both motors  and saves them. These values can be accessed as
-   described below
-
-.. function:: speed_L
-
-.. function:: speed_R
-
-   Speed of left and right motors,  in ticks/second, as fetched at last call of
-   ``get_speeds()``. Note that these values are not automatically updated:
-   you need to call ``get_speeds()`` to update them
-
-
-
-.. function:: get_distance()
-
-   Returns distance (in cm) travelled by the robot since the last encoder reset. 
-
-
-
-PID
----
-
-PID is an abbreviation for Proportional-Integral-Differential control. This is
-the industry standard way of using feedback (in this case, encoder values) to
-maintain some parameter (in this case, motor speed) as close as possible to
-target value.
-
-Yozh bot has PID control built-in; however, it is not enabled by default. To
-enable/disable PID, use the functions below.
-
-Before enabling PID, you need to provide some information necessary for its
-proper operation.  At the very minimum, you need to provide the speed of the
-motors when running at maximal power. For 75:1 motors, it is about 4200
-ticks/second; for other motors, you can find it by running ``motors_test.py`` example.
-
-.. function:: configure_PID(maxspeed)
-
-   Configures parameters of PID algorithm, using motors maximal speed in
-   encoder ticks/second.
-
-.. function:: PID_on()
-
-.. function:: PID_off()
-
-   Enables/disables  PID control (for both motors).
-
-Once PID is enabled, you can use same functions as before (``set_motors()``,
-``stop_motors()``) to control the motors, but now these functions will use
-encoder feedback to maintain desired motor speed.
-
-
-Drive control
--------------
-
-Yozh python library also provides higher level commands for controlling the robot.
-
-
-.. function:: go_forward (distance, speed=50)
-
-.. function:: go_backward(distance, speed=50)
-
-   Move forward/backward  by given distance (in centimeters). Parameter ``speed`` is
-   optional; if not given, default speed of 50 (i.e. half of maximal) is used.
-
-   Note that distance and speed should always be positive, even when moving backward.
-
-.. function:: turn(angle, speed=50)
+.. function:: turn(angle, effort=0.5)
 
    Turn by given angle, in degrees. Positive values correspond to turning right (clockwise).
    Parameter ``speed`` is  optional; if not given, default speed of 50 (i.e. half of maximal) is used.
 
 
-Note that all of these commands use encoder readings to determine how far to
-drive or turn. Of course, to do this one needs to know how to convert from
-centimeters or degrees to encoder ticks. This information is stored in properties
-``bot.CM_TO_TICKS`` and ``bot.DEG_TO_TICKS``. By default, Yozh library uses
-``CM_TO_TICKS = 150``, ``DEG_TO_TICKS=14``, which should be correct for 75:1 motors.
-If you find that the robot consistently turns too much (or too little), you can change these values, e.g.
+Encoders
+--------
+You can check encoders (rotation counters) of the motors so that you can see how far the robot has actually travelled. 
 
-.. code-block:: python
+.. function:: get_left_encoder_position()
 
-    bot.DEG_TO_TICKS=15
-    bot.turn(90)
+.. function:: get_right_encoder_position()
+
+   Returns the current position of the left/right motor’s encoder in cm.
+
+
+.. function:: reset_encoder_position()
+
+   Resets the position of both motors’ encoders to 0
+
