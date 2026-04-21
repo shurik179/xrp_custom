@@ -6,6 +6,12 @@ two buttons for interaction with the user. To control them,
 use the functions below. All functions below are methods of the `display` object, 
 so they should be called as `display.set_leds(...)`, `display.set_text(...)`, etc.
 
+
+.. figure:: images/display-main.jpg
+    :alt: Main view
+    :width: 60%
+
+
 LEDs
 -----
 .. function:: set_leds(color_l, color_r)
@@ -23,8 +29,8 @@ LEDs
     display.set_leds(BLUE)
 
 
-  Note that the LEDs are quite bright, so it is recommended to use relatively low values for 
-  the colors, e.g. 64 instead of 255, to avoid hurting your eyes and draining the batteries unnecessarily fast.
+Note that the LEDs are quite bright, so it is recommended to use relatively low values for 
+the colors, e.g. 64 instead of 255, to avoid hurting your eyes and draining the batteries unnecessarily fast.
 
 
 Buttons

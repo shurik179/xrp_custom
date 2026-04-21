@@ -7,11 +7,12 @@ your `main.py` file:
 .. code-block:: python
 
    import time
-   from XRPcustom.linearray import *
+   from XRPcustom.defaults import *
 
 
 
 This creates several objects that you will be using to control the robot:
+
 *  `display` - object representing the OLED display with LEDs and buttons
 *  `drivetrain` - object representing the drivetrain (drive motors and encoders)
 *  `linearray`` - object representing the reflectance line array sensor, used for detecting the line on the floor
