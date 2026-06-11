@@ -5,7 +5,9 @@ Project overview
 
 Ovierview of XRP 
 
-
+.. figure:: ../images/main_photo.jpg
+    :alt: Main view
+    :width: 80%
 
 .. toctree::
     :caption: Table of Contents
