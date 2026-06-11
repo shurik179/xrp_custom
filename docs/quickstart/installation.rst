@@ -55,7 +55,7 @@ Custom library installation
    Unzip the downloaded file.
    
   .. figure:: ../images/quickstart-github.png
-      :alt: GitHub rrepository
+      :alt: GitHub repository
       :width: 80%
 
 
