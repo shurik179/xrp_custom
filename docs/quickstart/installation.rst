@@ -54,7 +54,7 @@ Custom library installation
 1. Go to |github|, click green  "Code" button and select "Download ZIP" to download the repository to your computer. 
    Unzip the downloaded file.
    
-  .. figure:: ../images/quickstart-github.png
+  .. figure:: ../images/quickstart-thonny2.png
       :alt: GitHub repository
       :width: 80%
 
