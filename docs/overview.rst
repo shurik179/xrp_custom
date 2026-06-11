@@ -5,7 +5,7 @@ Project overview
 
 Ovierview of XRP 
 
-.. figure:: ../images/main_photo.jpg
+.. figure:: images/main_photo.jpg
     :alt: Main view
     :width: 80%
 
