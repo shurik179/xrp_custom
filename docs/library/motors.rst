@@ -17,6 +17,13 @@ All of the commands below are methods of the `drivetrain` object, so they should
 
    Stops the robot by setting the power to both motors to 0. 
 
+.. function:: set_effort(left_effort: float, right_effort: float)
+
+   Sets the effort (power) of the left and right motors; effort is measured as a fraction of the maximum effort.
+   This function does not use encoders; because of that and individual variations in motor efficiency, even if power of both motors is the same, 
+   the robot may not drive straight, and the actual speed may be different from what you expect.
+  
+
 .. function:: set_speed(left_speed: float, right_speed: float)
 
    Sets the speed of the left and right motors; speed is measured in centimeters per second. This function uses encoder feedback to maintain the desired speed.

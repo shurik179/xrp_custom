@@ -34,6 +34,7 @@ i2c = I2C(0, sda=Pin(4), scl=Pin(5), freq=400000)
 linearray = LineArray(i2c)
 display = XrpDisplay()
 
+drivetrain.set_zero_effort_behavior(True) # set motors to brake when effort is zero, rather than coasting. 
 
 if hasattr(Pin.board, "SERVO_3"):
     servo_three = Servo.get_default_servo(index=3)
