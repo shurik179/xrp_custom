@@ -60,11 +60,11 @@ Custom library installation
 
 
 2. Start Thonny editor, connect the robot to your computer. Make sure you have selected `MicroPython (RP2040)` 
-  in the lower right corner of the screen and that you can see the file system of the robot in "Files" pane.
+   in the lower right corner of the screen and that you can see the file system of the robot in "Files" pane.
 
 3. Find file `main.py` in the file system of your robot. This file is executed when the robot starts. The default 
-  file coming with the robot uses some complicated logic  to determine which program to run; we will not be using it. 
-  Rename this file to `main_old.py` to keep it as a backup. 
+   file coming with the robot uses some complicated logic  to determine which program to run; we will not be using it. 
+   Rename this file to `main_old.py` to keep it as a backup. 
   
 4. Change to   folder `/lib/` on the robot by clicking on it in the `File` pane. 
    It should contain subfolders `XRPLib`, `ble` and possibly others. 
