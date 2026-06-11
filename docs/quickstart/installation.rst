@@ -55,7 +55,7 @@ Custom library installation
    Unzip the downloaded file.
    
   .. figure:: ../images/quickstart-thonny2.png
-      :alt: GitHub repository
+      :alt: GitHub rrepository
       :width: 80%
 
 
