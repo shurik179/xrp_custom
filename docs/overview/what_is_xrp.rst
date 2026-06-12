@@ -5,6 +5,7 @@ XRP is a robotics kit created by consortium of several organizations, including 
 It has been in beta for about 2 years, but recently (March 2025) they released version 1, which has significant improvements.
 
 Useful links:
+-------------
 
 * `Main page <https://experientialrobotics.org/>`__
 * `Sparkfun product page <https://www.sparkfun.com/experiential-robotics-platform-xrp-diy-kit.html>`__; 
@@ -18,4 +19,16 @@ Useful links:
 * Software: `online IDE (XRPcode) <https://xrpcode.wpi.edu//>`__, `API docs <https://open-stem.github.io/XRP_MicroPython/>`__, `github <https://github.com/Open-STEM/XRP_MicroPython>`__
 * Firmware: Micropython .uf2 file (normally not needed, as the IDE has built-in tools for updating firmware);  in case your firmware is completely messed up, use  flash_nuke .uf2 file that erases the flash memory 
 * Some projects using XRP: https://www.printables.com/model/1216372-xrp-robot-kit/related
+
+Features:
+---------
+XRP is a typical 2-motor small differential drive robot, programmable in micropython. In addition to basic features, it also has:
+
+* Motor encoders
+* IMU and code to use it for turns
+* Support (connectors and code) for additional motors and servos
+
+Main feature of XPR is that it is easily customizable (unlike, say, Zumo, 3pi+, or Alvik). Chassis is 3d printed (and it has been designed with great care), making it easy to modify; there are numerous attachment points for adding extra actuators or sensors.  
+
+It also comes with a well-supported library and a whole course curriculum, and the price is reasonable - if you are willing to 3d print your own parts, the rest is just $99, and they offer discount to educators/robotics teams, which brings it down to $73. 
 
