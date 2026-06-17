@@ -6,6 +6,22 @@ that we have a black field (such as black painted plywood) with boundary
 marked by white tape. The goal is to program the robot to stay within the field
 boundaries.
 
+
+First, we begin with the usual initialization commands: 
+
+.. code-block:: python
+
+    import time
+    from XRPcustom.defaults import *
+    display.clear()
+    linearray.start()
+
+
+Now, let us actually code the movement.  
+
+
+
+
 First attempt (in pseudocode, not including the intialization):
 
 .. code-block:: python
@@ -15,12 +31,12 @@ First attempt (in pseudocode, not including the intialization):
 
 
 To see the boundary, we use reflectance sensor array, namely function
-`all_on_black()`: if this function returns `False`, at least one of the sensors
+`all_black()`: if this function returns `False`, at least one of the sensors
 sees the white boundary. We also replace "go forward until..." by more common `while` loop:
 
 .. code-block:: python
 
-    drivetrain.set_speed(20,20)
+    drivetrain.set_speed(15,15)
     while linearray.all_black():
         pass
     #if we are here, it means at least one of sensors sees white
@@ -38,7 +54,7 @@ Finally, we enclose it in `while True` loop to make it repeat forever:
 .. code-block:: python
 
     while True:
-      drivetrain.set_speed(20,20)
+      drivetrain.set_speed(15,15)
       while linearray.all_black():
         pass
       #if we are here, it means at least one of sensors sees white
@@ -52,11 +68,12 @@ boundary, it makes sense to turn left rather than turn 180 degrees:
 .. code-block:: python
 
     while True:
-      drivetrain.set_speed(20,20)
+      drivetrain.set_speed(15,15)
       while linearray.all_black():
         pass
       #if we are here, it means at least one of sensors sees white
+      drivetrain.stop()
       if linearray.on_white(0): #right sensor sees white; turn left 
-        drivetrain.turn(-120)
-      else:
         drivetrain.turn(120)
+      else:
+        drivetrain.turn(-120)

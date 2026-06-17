@@ -41,7 +41,8 @@ All of the commands below are methods of the `drivetrain` object, so they should
 
 .. function:: turn(angle, effort=0.5)
 
-   Turn by given angle, in degrees. Positive values correspond to turning right (clockwise).
+   Turn by given angle, in degrees. Positive values of angle correspond to turning left (counterclockwise); 
+   negative, to turning right. 
    Parameter ``effort`` is  optional; if not given, default effort  of 0.5 (i.e. half of maximal) is used.
 
 
