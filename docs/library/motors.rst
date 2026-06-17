@@ -32,7 +32,8 @@ All of the commands below are methods of the `drivetrain` object, so they should
 .. function:: straight(distance, effort=0.5)
 
    Move forward/backward  by given distance (in centimeters) at given effort (i.e. 
-   power level). Effort should be from -1 (reverse at full speed) to 1 (forward at full speed). 
+   power level). Positive distance corresponds to moving forward; negative, to moving backward. 
+   Effort should range from 0 to 1. 
    It is optional; if not given, the default effort of 0.5 (i.e. half of maximal) is used.
 
    This command uses encoder readings to determine how far to drive, and tries to keep the robot on straight path by using IMU. 
