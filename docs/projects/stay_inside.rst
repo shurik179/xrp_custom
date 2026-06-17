@@ -20,12 +20,12 @@ sees the white boundary. We also replace "go forward until..." by more common `w
 
 .. code-block:: python
 
-    bot.set_motors(30,30)
-    while bot.all_on_black():
+    drivetrain.set_speed(20,20)
+    while linearray.all_black():
         pass
     #if we are here, it means at least one of sensors sees white
-    bot.stop_motors()
-    bot.turn(180)
+    drivetrain.stop()
+    drivetrain.turn(180)
 
 
 Note that there is no need to set motor speed inside `while bot.all_on_black()`
@@ -38,12 +38,13 @@ Finally, we enclose it in `while True` loop to make it repeat forever:
 .. code-block:: python
 
     while True:
-        bot.set_motors(30,30)
-        while bot.all_on_black():
-            pass
-        #if we are here, it means at least one of sensors sees white
-        bot.stop_motors()
-        bot.turn(180)
+      drivetrain.set_speed(20,20)
+      while linearray.all_black():
+        pass
+      #if we are here, it means at least one of sensors sees white
+      drivetrain.stop()
+      drivetrain.turn(180)
+
 
 This is far from optimal. For example, if it is the right sensor that sees the
 boundary, it makes sense to turn left rather than turn 180 degrees:
@@ -51,11 +52,11 @@ boundary, it makes sense to turn left rather than turn 180 degrees:
 .. code-block:: python
 
     while True:
-        bot.set_motors(30,30)
-        while bot.all_on_black:
-            pass
-        #if we are here, it means at least one of sensors sees white
-        if bot.sensor_on_white(bot.A1):
-            turn(-120)
-        else:
-            turn(120)
+      drivetrain.set_speed(20,20)
+      while linearray.all_black():
+        pass
+      #if we are here, it means at least one of sensors sees white
+      if linearray.on_white(0): #right sensor sees white; turn left 
+        drivetrain.turn(-120)
+      else:
+        drivetrain.turn(120)
