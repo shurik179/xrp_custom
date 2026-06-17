@@ -17,7 +17,7 @@ Useful links:
 * Hardware - 3d printed: `files for 3d printing <https://www.printables.com/model/1216372-xrp-robot-kit>`__, 
   `source CAD (OnShape) <https://cad.onshape.com/documents/9bf1dfe68ee7a0325b55874b/w/ce3df1692e8bea96311ada3c/e/74b13b5b748084e43addbe27?renderMode=0&uiState=69e76dd17e34b23865a6b982>`__
 * Software: `online IDE (XRPcode) <https://xrpcode.wpi.edu//>`__, `API docs <https://open-stem.github.io/XRP_MicroPython/>`__, `github <https://github.com/Open-STEM/XRP_MicroPython>`__
-* Firmware: Micropython `.uf2 file <https://www.micropython.org/resources/firmware/SPARKFUN_XRP_CONTROLLER-20250415-v1.25.0.uf2>`__  (normally not needed, as the IDE has built-in tools for updating firmware);  in case your firmware is completely messed up, use  flash_nuke .uf2 file that erases the flash memory 
+* Firmware: Micropython `.uf2 file <https://www.micropython.org/resources/firmware/SPARKFUN_XRP_CONTROLLER-20250415-v1.25.0.uf2>`__  (normally not needed, as the IDE has built-in tools for updating firmware);  in case your firmware is completely messed up, use  `flash_nuke.uf2 <https://datasheets.raspberrypi.com/soft/flash_nuke.uf2>`__ file that erases the flash memory 
 * Some projects using XRP: https://www.printables.com/model/1216372-xrp-robot-kit/related
 
 Features:
