@@ -26,13 +26,17 @@ display.set_leds(GREEN)
 display.write_line(3, "Press button B\n to start")
 display.wait_for_button()
 
-speed = 0.3
-Kp = 0.1
+#speed = 0.3
+#Kp = 0.1
+speed = 20
+Kp = 6
 # position of white line 
 error = 0
 while not linearray.all_black():
     
-    drivetrain.set_effort(speed-Kp*error, speed+Kp*error)
+    #drivetrain.set_effort(speed-Kp*error, speed+Kp*error)
+    drivetrain.set_speed(speed-Kp*error, speed+Kp*error)
+
     # read new position
     pos=linearray.line_pos()
     error = (pos-50)/50 # ranges from -1 (line all the way to the right)
