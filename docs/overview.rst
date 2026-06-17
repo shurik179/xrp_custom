@@ -15,4 +15,4 @@ Ovierview of XRP
 
     overview/what_is_xrp
     overview/xrp_drawbacks
-    overview/xrp_custom 
+    overview/modifications
