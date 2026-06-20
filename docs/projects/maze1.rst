@@ -42,7 +42,7 @@ Function `go_to_intersection()` should follow the line until we reach an
 intersection (that is, until the reflectance sensors at the front of the robot
 are above an intersection). This function is very similar to line follower algorithm
 from the previous project, with added checks: it should stop when reflectance
-sensor A1 (rightmost) or A8 (leftmost) sees white.
+sensor 0 (rightmost) or 5 (leftmost) sees white.
 
 Function `check_intersection()` should do three things:
 
@@ -58,9 +58,9 @@ Function `check_intersection()` should do three things:
 
 We can achieve this by asking the robot to start moving  forward until
 we have travelled 5 cm;  while doing this, we will be checking the
-line sensors. If the leftmost line sensor (A8)  sees white, it means that
+line sensors. If the leftmost line sensor (5)  sees white, it means that
 there is a passage to the left. To record it, we can create boolean variable
-`path_left` and set it to `True` once the sensor A8 sees white
+`path_left` and set it to `True` once the sensor 5 sees white
 (Also, we should remember to set it   to `False` initially):
 
 
@@ -68,21 +68,21 @@ there is a passage to the left. To record it, we can create boolean variable
 
    def check_intersection():
        # go forward while checking for intersection lines
-       bot.reset_encoders()
+       drivetrain.reset_encoder_position()
        path_left = False
 
-       bot.set_motors(30,30) #start moving forward slowly
-       while bot.get_distance()<5:
-           if bot.sensor_on_white(bot.A8):
+       drivetrain.set_speeds(10,10) #start moving forward slowly
+       while drivetrain.get_left_encoder_position()<5:
+           if linearray.on_white(5): #left sensor sees white; there is a path to the left
                path_left = True
-       bot.stop_motors()
+       drivetrain.stop()
 
 
 We should also add similar code for determining whether there is a path to
 the right (left to the reader as an exercise).
 
 Next, once we advanced, we need to check if there is a passage ahead.
-This is easy using `all_on_black()` function (if there is no passage forward,
+This is easy using `all_black()` function (if there is no passage forward,
 all sensors will be on black).
 
 Finally, we need somehow to return this information to whatever place in our
@@ -95,19 +95,19 @@ return the list. This gives the following code:
 
    def check_intersection():
        # go forward while checking for intersection lines
-       bot.reset_encoders()
+       drivetrain.reset_encoder_position()
        path_left = False
        path_forward = False
        path_right  = False
 
-       bot.set_motors(30,30) #start moving forward slowly
-       while bot.get_distance()<5:
-           if bot.sensor_on_white(bot.A8):
+       drivetrain.set_speeds(10,10) #start moving forward slowly
+       while drivetrain.get_left_encoder_position()<5:
+           if linearray.on_white(5):
                path_left = True
            ....
-       bot.stop_motors()
-       if not bot.all_on_black():
-           path.forward = True
+       drivetrain.stop()
+       if not linearray.all_black():
+           path_forward = True
        # now, let us return the found values
        return([path_left, path_forward, path_right])
 
@@ -120,9 +120,9 @@ Now we can write the main program:
        paths = check_intersection()
        if paths[0]:
           # path to the left is open
-          bot.turn(-90)
+          drivetrain.turn(90)
       elif paths[1]:
           # path forward is open - do nothing, no need to turn
           pass
       elif paths[2]:
-          bot.turn(90)
+          drivetrain.turn(-90)
