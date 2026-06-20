@@ -14,7 +14,7 @@ display.clear()
 display.write_line(1,'Reflectance array', fg = display.CYAN)
 
 linearray.start()
-linearray.set_linemode(1)
+linearray.set_linemode(1) #white line on black background
 fw_version = linearray.fw_version()
 display.write_line(1, "Firmware: {}".format(fw_version))
 display.write_line(4,'Press A to calibrate\n   B to skip calibration')
