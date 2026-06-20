@@ -71,7 +71,7 @@ there is a passage to the left. To record it, we can create boolean variable
        drivetrain.reset_encoder_position()
        path_left = False
 
-       drivetrain.set_speeds(10,10) #start moving forward slowly
+       drivetrain.set_speed(10,10) #start moving forward slowly
        while drivetrain.get_left_encoder_position()<5:
            if linearray.on_white(5): #left sensor sees white; there is a path to the left
                path_left = True
@@ -100,7 +100,7 @@ return the list. This gives the following code:
        path_forward = False
        path_right  = False
 
-       drivetrain.set_speeds(10,10) #start moving forward slowly
+       drivetrain.set_speed(10,10) #start moving forward slowly
        while drivetrain.get_left_encoder_position()<5:
            if linearray.on_white(5):
                path_left = True
