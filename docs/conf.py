@@ -99,6 +99,8 @@ html_favicon = "images/favicon.png"
 #
 html_theme_options = {
     'logo_only': False,
+    'navigation_depth': 4, # Adjust the number to your preferred depth
+    'collapse_navigation': False,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
