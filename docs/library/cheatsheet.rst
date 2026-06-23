@@ -75,6 +75,9 @@ Linearray sensor
 .. function:: linearrya.all_black()
 .. function:: linearray.all_white()
 
+   Returns True if  all sensors is on black (respectively, white) and False otherwise.
+
+
 
 
 .. function:: linearray.set_linemode(mode)
