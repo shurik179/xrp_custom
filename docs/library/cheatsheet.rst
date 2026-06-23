@@ -72,7 +72,7 @@ Linearray sensor
    Returns True if sensor s is on black (respectively, white) and False otherwise.
    s ranges from 0 (rightmost) to 5 (leftmost) 
 
-.. function:: linearrya.all_black()
+.. function:: linearray.all_black()
 .. function:: linearray.all_white()
 
    Returns True if  all sensors is on black (respectively, white) and False otherwise.
