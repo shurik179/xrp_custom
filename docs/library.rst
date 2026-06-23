@@ -32,3 +32,5 @@ This lists includes :
     library/reflectance
     library/distance
     library/imu
+    library/cheatsheet
+    
